@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wf-aks-sample-deploy
+  namespace: sample-app-namespace-1787113322033
+  labels:
+    app.kubernetes.io/name: wf-aks-sample-deploy
+    kubernetes.azure.com/generator: devhub
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: wf-aks-sample-deploy
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

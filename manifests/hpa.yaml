@@ -1,0 +1,22 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: wf-aks-sample-deploy
+  labels:
+    app.kubernetes.io/name: wf-aks-sample-deploy
+    app.kubernetes.io/part-of: wf-aks-sample-deploy-project
+    kubernetes.azure.com/generator: devhub
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: wf-aks-sample-deploy
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
